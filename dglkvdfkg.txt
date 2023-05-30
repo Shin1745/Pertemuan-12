@@ -1,0 +1,21 @@
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Action</th>
+            </tr>
+
+        </thead>
+        <body>
+            <tr>
+                <td>#</td>
+                <td>Nama</td>
+                <td>Email</td>
+                <td>Username</td>
+                <td>Action</td>
+            </tr>
+        </body>
+    </table>
