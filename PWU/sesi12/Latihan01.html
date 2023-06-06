@@ -4,39 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan Json 3</title>
+    <title>Membaca Data JSon 02</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        table, tr, th, td{text-align: center;
+        border: 1px solid;}
+    </style>
 </head>
 <body>
-    <h3>List Data</h3>
-    <div id="tampil"></div>
 
-
-    <script>
-        const jsHTTP = new XMLHttpRequest();
+        <a href="latihan01-new.html">Data Baru</a>
+    <div id="TampilData"></div>
     
-        jsHTTP.onload = function(){
-            const dta = JSON.parse(this.responseText);
-            let tx = '<table> <thead> <tr> <th>#</th> <th>Nama</th> <th>Email</th> <th>Username</th>';
-            let no = 1;
-            for(let i=0; i<dta.isi.length; i++){
-                tx += '<tr>';
-                tx += '<tD>'+no+'</td>';
-                tx += '<td>'+ dta.isi[i][0] +'</td>';
-                tx += '<td>'+ dta.isi[i][1] +'</td>';
-                tx += '<td>'+ dta.isi[i][2] +'</td>';
-                tx += '<td>Action</td>';
-                tx += '</tr>';
-                no++;
-            }
-            tx += '</tbody></table>';
-
-            document.getElementById("tampil").innerHTML = tx;
-        }
-       
+    <script class="container text-center">
+        const jsHTTP = new XMLHttpRequest();
         jsHTTP.open("GET","https://webpro.ptov.my.id/api/curduser.php?aksi=get");
         jsHTTP.send();
-   
 
-    </script>
+        jsHTTP.onload = function(){
+            const data = JSON.parse(this.responseText);
+            console.log(data);
+            let tx = "<h3>List Data</h3>";
+            tx += "<table><tr><th>#</th><th>Nama</th><th>Email</th><th>Username</th></tr>";
+            let no = 1; 
+            for(let i=0; i<data.isi.length; i++){
+                tx += "<tr>";
+                tx += "     <td>"+no+"</td>";
+                tx += "     <td>"+data.isi[i][0]+"</td>";
+                tx += "     <td>"+data.isi[i][1]+"</td>";
+                tx += "     <td>"+data.isi[i][2]+"</td>";
+                tx += "     <td><a href='sesi12-edit.html?id="+data.isi[i][3]+"'>Edit</a>"
+                tx += "     <a href='sesi12-edit.html?id="+data.isi[i][3]+"'>Hapus</a></td>"
+
+                tx += "</tr>";
+                no++;
+            }
+            tx += "</table>";
+            document.getElementById("TampilData").innerHTML = tx;
+         
+        } 
+    </script> 
+
 </body>
 </html>
